@@ -563,6 +563,12 @@ function handleStartBtn() {
   }, 800);
 }
 
+function selectPricingCard(cardEl, plan) {
+  document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('selected'));
+  cardEl.classList.add('selected');
+  showToast(`${plan} 플랜을 선택했습니다! 로그인 후 구독을 시작하세요.`);
+}
+
 function handlePlanSelect(plan) {
   showToast(`${plan} 플랜을 선택하셨습니다! 회원가입 후 이용 가능합니다.`);
 }

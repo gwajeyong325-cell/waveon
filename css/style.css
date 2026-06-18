@@ -779,11 +779,11 @@ iframe { display: block; }
   position: relative;
   transition: all var(--transition);
 }
-.pricing-card:hover { border-color: rgba(124,58,237,0.4); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-.pricing-card.featured {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 40px rgba(124,58,237,0.2);
-  background: linear-gradient(135deg, rgba(124,58,237,0.08) 0%, var(--color-surface2) 100%);
+.pricing-card { cursor: pointer; }
+.pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.pricing-card.selected {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 1px var(--color-primary-light), 0 8px 40px rgba(124,58,237,0.25);
 }
 
 .plan-tag {
