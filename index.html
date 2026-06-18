@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WAVEON - 당신의 파도를 타라</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <header id="main-header">
+    <div class="header-inner">
+      <a href="#" class="logo">WAVE<span>ON</span></a>
+
+      <nav id="main-nav">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">홈</a></li>
+          <li><a href="#main-contents" class="nav-link">인기 콘텐츠</a></li>
+          <li><a href="#detail-section" class="nav-link">신작</a></li>
+          <li><a href="#recommended" class="nav-link">추천</a></li>
+          <li><a href="#pricing" class="nav-link">요금제</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-primary btn-sm" onclick="handleStartBtn()">지금 시작하기</button>
+        <button class="hamburger" id="hamburger-btn" aria-label="메뉴 열기">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-nav-list">
+        <li><a href="#hero" class="mobile-nav-link">홈</a></li>
+        <li><a href="#main-contents" class="mobile-nav-link">인기 콘텐츠</a></li>
+        <li><a href="#detail-section" class="mobile-nav-link">신작</a></li>
+        <li><a href="#recommended" class="mobile-nav-link">추천</a></li>
+        <li><a href="#pricing" class="mobile-nav-link">요금제</a></li>
+        <li><button class="btn btn-primary btn-full" onclick="handleStartBtn()">지금 시작하기</button></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badges" id="hero-badges">
+          <span class="badge badge-genre">로딩 중...</span>
+        </div>
+        <h1 class="hero-title" id="hero-title">WAVEON</h1>
+        <p class="hero-desc" id="hero-desc">최고의 콘텐츠를 불러오는 중...</p>
+        <div class="hero-meta" id="hero-meta"></div>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="hero-watch-btn" onclick="handleWatchNow()">
+            ▶ 지금 시청하기
+          </button>
+          <button class="btn btn-secondary btn-lg" id="hero-trailer-btn" onclick="handleTrailer()">
+            ⬛ 예고편 보기
+          </button>
+          <button class="btn btn-ghost btn-lg" id="hero-list-btn" onclick="handleAddToList()">
+            + 내 리스트
+          </button>
+        </div>
+      </div>
+
+      <!-- 히어로 슬라이드 인디케이터 -->
+      <div class="hero-indicators" id="hero-indicators"></div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENTS SECTION ===== -->
+  <section id="main-contents">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">🔥 지금 인기 콘텐츠</h2>
+        <p class="section-subtitle">지금 가장 많이 보고 있는 작품들</p>
+      </div>
+      <div class="contents-grid" id="contents-grid">
+        <!-- JS로 동적 생성 -->
+        <div class="content-card skeleton"></div>
+        <div class="content-card skeleton"></div>
+        <div class="content-card skeleton"></div>
+        <div class="content-card skeleton"></div>
+        <div class="content-card skeleton"></div>
+        <div class="content-card skeleton"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DETAIL INTRODUCTION SECTION ===== -->
+  <section id="detail-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">✨ 지금 주목할 작품</h2>
+        <p class="section-subtitle">이 작품을 놓치지 마세요</p>
+      </div>
+
+      <div class="detail-card" id="detail-card">
+        <!-- JS로 동적 생성 -->
+      </div>
+
+      <!-- 강조 배너 -->
+      <div class="highlight-banner" id="highlight-banner">
+        <!-- JS로 동적 생성 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RECOMMENDED CONTENTS SECTION ===== -->
+  <section id="recommended">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">💜 나를 위한 추천</h2>
+        <p class="section-subtitle">취향 기반 맞춤 추천 콘텐츠</p>
+      </div>
+
+      <!-- 추천 탭 -->
+      <div class="rec-tabs">
+        <button class="rec-tab active" data-tab="all">전체</button>
+        <button class="rec-tab" data-tab="popular">인기</button>
+        <button class="rec-tab" data-tab="animation">애니메이션</button>
+        <button class="rec-tab" data-tab="movie">영화</button>
+      </div>
+
+      <!-- 추천 슬라이드 -->
+      <div class="rec-slider-wrapper">
+        <button class="slider-btn slider-prev" id="rec-prev" aria-label="이전">&#8249;</button>
+        <div class="rec-slider" id="rec-slider">
+          <!-- JS로 동적 생성 -->
+        </div>
+        <button class="slider-btn slider-next" id="rec-next" aria-label="다음">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING SECTION ===== -->
+  <section id="pricing">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">💳 요금제 안내</h2>
+        <p class="section-subtitle">원하는 플랜을 선택하세요</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="plan-badge">BASIC</div>
+          <div class="plan-price">₩7,900<span>/월</span></div>
+          <ul class="plan-features">
+            <li>✓ HD 화질</li>
+            <li>✓ 1개 기기 동시 시청</li>
+            <li>✓ 광고 포함</li>
+            <li>✗ 다운로드 불가</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="handlePlanSelect('BASIC')">시작하기</button>
+        </div>
+        <div class="pricing-card featured">
+          <div class="plan-tag">인기</div>
+          <div class="plan-badge">STANDARD</div>
+          <div class="plan-price">₩13,500<span>/월</span></div>
+          <ul class="plan-features">
+            <li>✓ FHD 화질</li>
+            <li>✓ 2개 기기 동시 시청</li>
+            <li>✓ 광고 없음</li>
+            <li>✓ 다운로드 2개</li>
+          </ul>
+          <button class="btn btn-primary btn-full" onclick="handlePlanSelect('STANDARD')">시작하기</button>
+        </div>
+        <div class="pricing-card">
+          <div class="plan-badge">PREMIUM</div>
+          <div class="plan-price">₩17,000<span>/월</span></div>
+          <ul class="plan-features">
+            <li>✓ 4K UHD 화질</li>
+            <li>✓ 4개 기기 동시 시청</li>
+            <li>✓ 광고 없음</li>
+            <li>✓ 무제한 다운로드</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="handlePlanSelect('PREMIUM')">시작하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="main-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo footer-logo">WAVE<span>ON</span></a>
+          <p class="footer-tagline">당신의 파도를 타라</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>서비스</h4>
+          <ul>
+            <li><a href="#" onclick="return handleFooterLink('공지사항')">공지사항</a></li>
+            <li><a href="#" onclick="return handleFooterLink('고객센터')">고객센터</a></li>
+            <li><a href="#" onclick="return handleFooterLink('기업 정보')">기업 정보</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>정책</h4>
+          <ul>
+            <li><a href="#" onclick="return handleFooterLink('이용약관')">이용약관</a></li>
+            <li><a href="#" onclick="return handleFooterLink('개인정보처리방침')">개인정보처리방침</a></li>
+            <li><a href="#" onclick="return handleFooterLink('청소년 보호정책')">청소년 보호정책</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>SNS</h4>
+          <div class="sns-links">
+            <a href="#" class="sns-btn" onclick="return handleSNS('Instagram')" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="sns-btn" onclick="return handleSNS('X')" aria-label="X(Twitter)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="sns-btn" onclick="return handleSNS('YouTube')" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 WAVEON Corp. All rights reserved.</p>
+        <p class="footer-info">WAVEON는 가상의 OTT 서비스입니다.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== 예고편 모달 ===== -->
+  <div class="modal-backdrop" id="trailer-modal" role="dialog" aria-modal="true" aria-label="예고편">
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close-btn" aria-label="닫기">&times;</button>
+      <div class="modal-video-wrapper">
+        <iframe id="trailer-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="예고편"></iframe>
+      </div>
+      <div class="modal-info" id="modal-info"></div>
+    </div>
+  </div>
+
+  <!-- ===== 콘텐츠 상세 모달 ===== -->
+  <div class="modal-backdrop" id="content-modal" role="dialog" aria-modal="true" aria-label="콘텐츠 상세">
+    <div class="modal-container modal-large">
+      <button class="modal-close" id="content-modal-close" aria-label="닫기">&times;</button>
+      <div id="content-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== 스크롤 탑 버튼 ===== -->
+  <button class="scroll-top" id="scroll-top-btn" aria-label="맨 위로">▲</button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
