@@ -785,6 +785,13 @@ iframe { display: block; }
   border-color: var(--color-primary-light);
   box-shadow: 0 0 0 1px var(--color-primary-light), 0 8px 40px rgba(124,58,237,0.25);
 }
+.pricing-card .btn.pressed {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.25);
+  transform: scale(0.97);
+}
 
 .plan-tag {
   position: absolute;
