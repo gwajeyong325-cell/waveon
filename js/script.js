@@ -565,9 +565,9 @@ function handleStartBtn() {
 
 function selectPricingCard(cardEl, plan) {
   document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('selected'));
-  document.querySelectorAll('.pricing-card .btn').forEach(b => b.classList.remove('pressed'));
+  document.querySelectorAll('.pricing-card .btn').forEach(b => b.classList.remove('pushed'));
   cardEl.classList.add('selected');
-  cardEl.querySelector('.btn').classList.add('pressed');
+  cardEl.querySelector('.btn').classList.add('pushed');
   showToast(`${plan} 플랜을 선택했습니다! 로그인 후 구독을 시작하세요.`);
 }
 
