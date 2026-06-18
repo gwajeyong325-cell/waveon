@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마이페이지 - WAVEON</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mypage.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header id="main-header" class="scrolled">
+    <div class="header-inner">
+      <a href="index.html" class="logo">WAVE<span>ON</span></a>
+
+      <nav id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html#hero" class="nav-link">홈</a></li>
+          <li><a href="index.html#main-contents" class="nav-link">인기 콘텐츠</a></li>
+          <li><a href="index.html#recommended" class="nav-link">추천</a></li>
+          <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
+          <li><a href="mypage.html" class="nav-link active">마이페이지</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost btn-sm" id="header-login-btn" onclick="window.location.href='index.html'" style="display:none;">로그인</button>
+
+        <div class="header-user-section" id="header-user-section" style="display:none;">
+          <button class="header-avatar-btn" aria-label="마이페이지">
+            <span class="header-avatar" id="header-avatar">U</span>
+            <span class="header-user-name" id="header-user-name"></span>
+          </button>
+          <button class="btn btn-ghost btn-sm" onclick="logout()">로그아웃</button>
+        </div>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 모바일 메뉴 -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#hero" class="mobile-nav-link">홈</a></li>
+        <li><a href="index.html#main-contents" class="mobile-nav-link">인기 콘텐츠</a></li>
+        <li><a href="index.html#recommended" class="mobile-nav-link">추천</a></li>
+        <li><a href="index.html#pricing" class="mobile-nav-link">요금제</a></li>
+        <li id="mobile-login-li" style="display:none; padding:8px 16px;">
+          <a href="index.html" class="btn btn-primary btn-full">로그인</a>
+        </li>
+        <li id="mobile-user-li" style="display:none; flex-direction:column; gap:8px; padding:8px 16px;">
+          <div class="mobile-user-info">
+            <div class="mobile-avatar" id="mobile-avatar"></div>
+            <span id="mobile-user-name" style="font-size:0.9rem; font-weight:600;"></span>
+          </div>
+          <button class="btn btn-ghost btn-full" onclick="logout()">로그아웃</button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== 메인 콘텐츠 ===== -->
+  <main class="mypage-main">
+
+    <!-- 프로필 히어로 -->
+    <section class="profile-hero">
+      <div class="profile-hero-bg" id="profile-hero-bg"></div>
+      <div class="profile-hero-overlay"></div>
+      <div class="profile-hero-content">
+        <div class="profile-avatar-large" id="profile-avatar-large">U</div>
+        <div class="profile-hero-text">
+          <div class="profile-name-row">
+            <h1 class="profile-name" id="profile-name">로딩 중...</h1>
+            <span class="demo-badge" id="demo-badge" style="display:none;">데모 계정</span>
+          </div>
+          <p class="profile-email" id="profile-email"></p>
+          <div class="profile-genres" id="profile-genres"></div>
+        </div>
+        <div class="profile-stats">
+          <div class="stat-card">
+            <span class="stat-num" id="stat-mylist">0</span>
+            <span class="stat-label">내 리스트</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="stat-recent">0</span>
+            <span class="stat-label">최근 시청</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="stat-joined">-</span>
+            <span class="stat-label">가입</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 탭 네비게이션 -->
+    <div class="mypage-tab-bar">
+      <div class="mypage-tab-inner">
+        <button class="mypage-tab active" data-section="my-list">내 리스트</button>
+        <button class="mypage-tab" data-section="recent">최근 시청</button>
+        <button class="mypage-tab" data-section="settings">계정 설정</button>
+      </div>
+    </div>
+
+    <div class="mypage-container">
+
+      <!-- ===== 내 리스트 섹션 ===== -->
+      <section class="mypage-section active" id="section-my-list">
+        <div class="mypage-section-header">
+          <h2>내 리스트</h2>
+          <p id="mylist-count-text">저장된 콘텐츠를 불러오는 중...</p>
+        </div>
+        <div class="mypage-grid" id="mylist-grid">
+          <div class="mypage-empty" id="mylist-empty" style="display:none;">
+            <div class="empty-icon">📋</div>
+            <h3>리스트가 비어있습니다</h3>
+            <p>홈에서 마음에 드는 콘텐츠를 찾아 리스트에 담아보세요!</p>
+            <a href="index.html" class="btn btn-primary">콘텐츠 탐색하기</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 최근 시청 섹션 ===== -->
+      <section class="mypage-section" id="section-recent">
+        <div class="mypage-section-header">
+          <h2>최근 시청</h2>
+          <p id="recent-count-text">최근에 본 콘텐츠</p>
+        </div>
+        <div class="mypage-grid" id="recent-grid">
+          <div class="mypage-empty" id="recent-empty" style="display:none;">
+            <div class="empty-icon">🎬</div>
+            <h3>시청 기록이 없습니다</h3>
+            <p>콘텐츠를 클릭해서 둘러보면 여기에 기록이 남습니다.</p>
+            <a href="index.html" class="btn btn-primary">콘텐츠 보러가기</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 계정 설정 섹션 ===== -->
+      <section class="mypage-section" id="section-settings">
+        <div class="settings-grid">
+
+          <!-- 프로필 수정 카드 -->
+          <div class="settings-card">
+            <h3 class="settings-card-title">프로필 정보</h3>
+            <div id="demo-settings-notice" class="demo-notice" style="display:none;">
+              <span>🔒</span>
+              <p>데모 계정은 정보를 변경할 수 없습니다.<br>직접 회원가입하면 프로필을 자유롭게 수정할 수 있어요!</p>
+              <a href="index.html" class="btn btn-primary btn-sm" onclick="setTimeout(()=>openAuthModal('signup'),300)">회원가입하기</a>
+            </div>
+            <form id="profile-form" class="settings-form" onsubmit="handleProfileUpdate(event)">
+              <div class="form-group">
+                <label>닉네임</label>
+                <input type="text" id="settings-display" placeholder="닉네임" />
+              </div>
+              <div class="form-group">
+                <label>사용자명</label>
+                <input type="text" id="settings-username" placeholder="사용자명" readonly style="opacity:0.5;" />
+              </div>
+              <div class="form-group">
+                <label>이메일</label>
+                <input type="email" id="settings-email" placeholder="이메일" readonly style="opacity:0.5;" />
+              </div>
+              <p class="auth-error" id="settings-error"></p>
+              <p class="settings-success" id="settings-success"></p>
+              <button type="submit" class="btn btn-primary">저장하기</button>
+            </form>
+          </div>
+
+          <!-- 선호 장르 카드 -->
+          <div class="settings-card">
+            <h3 class="settings-card-title">선호 장르</h3>
+            <p class="settings-card-desc">관심 있는 장르를 선택하면 맞춤 추천을 받을 수 있어요.</p>
+            <div class="genre-tags" id="genre-tags">
+              <!-- JS로 생성 -->
+            </div>
+            <button class="btn btn-primary" onclick="handleGenreSave()" style="margin-top:16px;">저장하기</button>
+          </div>
+
+          <!-- 위험 구역 카드 -->
+          <div class="settings-card danger-card">
+            <h3 class="settings-card-title">계정 관리</h3>
+            <div class="danger-actions">
+              <div class="danger-item">
+                <div>
+                  <strong>로그아웃</strong>
+                  <p>현재 기기에서 로그아웃합니다.</p>
+                </div>
+                <button class="btn btn-outline" onclick="logout()">로그아웃</button>
+              </div>
+              <div class="danger-item">
+                <div>
+                  <strong>내 리스트 초기화</strong>
+                  <p>저장한 모든 콘텐츠 리스트를 삭제합니다.</p>
+                </div>
+                <button class="btn btn-outline danger-btn" onclick="handleClearList()">초기화</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="main-footer">
+    <div class="footer-inner">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer-copy">&copy; 2026 WAVEON Corp. All rights reserved.</p>
+        <p class="footer-info">WAVEON는 가상의 OTT 서비스입니다.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/mypage.js"></script>
+</body>
+</html>

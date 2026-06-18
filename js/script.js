@@ -18,6 +18,14 @@ let currentActiveContent = null;
 
 // ---- DOM Ready ----
 document.addEventListener('DOMContentLoaded', async () => {
+  // auth.js 초기화
+  updateHeaderAuth();
+  initAuthModal();
+  // URL에 ?auth=login 파라미터가 있으면 로그인 모달 자동 오픈
+  if (new URLSearchParams(window.location.search).get('auth') === 'login') {
+    openAuthModal('login');
+  }
+
   initScrollEffects();
   initHamburger();
   initModals();
@@ -353,6 +361,9 @@ function openContentModal(contentId) {
   const content = allContents.find(c => c.id === contentId);
   if (!content) return;
 
+  // 최근 시청 기록 저장 (auth.js의 addRecentView 사용)
+  if (typeof addRecentView === 'function') addRecentView(contentId);
+
   const modal = document.getElementById('content-modal');
   const typeLabel = { movie: '영화', drama: '드라마', animation: '애니메이션' };
   const epInfo = content.episode_count ? `총 ${content.episode_count}화` : `${content.runtime || '?'}분`;
@@ -406,6 +417,14 @@ function closeContentModal() {
 /* =============================================
    모달 초기화
    ============================================= */
+function initAuthModal() {
+  const modal = document.getElementById('auth-modal');
+  if (!modal) return;
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeAuthModal();
+  });
+}
+
 function initModals() {
   document.getElementById('modal-close-btn').addEventListener('click', closeTrailerModal);
   document.getElementById('content-modal-close').addEventListener('click', closeContentModal);
